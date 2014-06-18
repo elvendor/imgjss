@@ -1,6 +1,5 @@
 # imgjss Laravel Package
 ======
-
 **Imgjss** package adds handy way of including assets into your .blade.php files.
 
 ## Features
