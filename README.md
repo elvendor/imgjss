@@ -3,6 +3,8 @@
 [Imgjss](https://github.com/elvendor/imgjss) is a simple [Laravel 4](http://laravel.com) package that provides handy way of including assets into your `.blade.php` files.
 Now you can use `HTML::style()`, `HTML::script()` and `HTML::image()` via short Blade syntax.
 
+Join our [Russian Laravel Community](https://gitter.im/LaravelRUS/chat) webchat on Gitter!
+
 ## Features
 Avoid putting extensions of **js** & **css** files, package adds it automatically:
 ```php
