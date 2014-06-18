@@ -8,28 +8,28 @@ Now you can use `HTML::style()`, `HTML::script()` and `HTML::image()` via short 
 
 Avoid putting extensions of **js** & **css** files, package adds it automatically:
 ```php
-  @js('js/jquery.js')
+@js('js/jquery.js')
 ```
 same as:
 ```php
-  @js('js/jquery')
+@js('js/jquery')
 ```
 
 But as for images, you **should** use file extensions:
 
 ```php
-  @img('uploads/cat.jpg')
+@img('uploads/cat.jpg')
 ```
 
 Pass attributes array as second parameter:
 ```php
-  @css('css/print', ['media' => 'print'])
+@css('css/print', ['media' => 'print'])
 ```
 
 By default package automatically appends last modified timestamp of the file as query string.
 You can change/disable this behavior in config file or simply pass true/false as third parameter:
 ```php
-@js('js/translations_ru', ['charset' => 'utf-8'], false) // disabled timestamp appending
+@js('js/translations', ['charset' => 'utf-8'], false) // disabled timestamp appending
 ```
 
 When using Laravel's `HTML::image()` you pass `alt` attribute as second param, and other attributes as third.
@@ -63,14 +63,14 @@ And lastly, please notice that package throws Not Found Exception when asset doe
 ```
 - Add Service Provider to providers list:
 ```php
-  'providers' => [
-     // ...
-    'Elvendor\Imgjss\ImgjssServiceProvider',
-  ],
+'providers' => [
+  // ...
+  'Elvendor\Imgjss\ImgjssServiceProvider',
+],
 ```
 - If you plan to change package defaults, you can also publish config file:
 ```php
-  php artisan config:publish elvendor/imgjss
+php artisan config:publish elvendor/imgjss
 ```
 	
 ## Roadmap
