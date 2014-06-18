@@ -73,6 +73,7 @@ php artisan config:publish elvendor/imgjss
 ## Roadmap
 - Avoid images extensions by looking for a file on given path (maybe not good idea)
 - Setting default js, css, img paths
+- Ability to use external assets as well
 - Cover with tests
 
 ## Licence
