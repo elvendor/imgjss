@@ -42,8 +42,8 @@ Fourth parameter is for including asset from secure location of your website, e.
 And lastly, please notice that package throws Not Found Exception when asset doesn't exist.
 
 ## Requirements
-- PHP >= 5.4
-- Laravel >= 4.2
+- PHP >= 5.3
+- Laravel >= 4.0
 
 ## Installation
 - The **Imgjss** package can be installed via [Composer](http://getcomposer.org) by requiring the
@@ -52,7 +52,7 @@ And lastly, please notice that package throws Not Found Exception when asset doe
 ```json
 {
     "require": {
-        "laravel/framework": "4.2.*",
+        "laravel/framework": "4.*",
         "elvendor/imgjss": "0.*"
     },
     "minimum-stability": "dev"
