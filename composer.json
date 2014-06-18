@@ -1,6 +1,9 @@
 {
     "name": "elvendor/imgjss",
-    "description": "",
+    "description": "Imgjss Package for Laravel 4",
+    "keywords": ["L4", "Laravel 4", "Laravel", "Blade", "syntax", "html", "asset"],
+    "homepage": "http://github.com/elvendor/imgjss",
+    "license": "MIT",
     "authors": [
         {
             "name": "Elvendor",
