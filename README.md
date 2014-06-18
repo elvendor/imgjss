@@ -39,7 +39,7 @@ I think that is not good idea. Using `@img` syntax this package provides you can
 
 Fourth parameter is for including asset from secure location of your website, e.g. `https://...`. Its `false` by default.
 
-And lastly, please notice that package throws Not Found Exception when asset doesn't exist.
+And lastly, please notice that package **doesn't** throw NotFoundException when asset wasn't exist.
 
 ## Requirements
 - PHP >= 5.3
@@ -73,7 +73,7 @@ php artisan config:publish elvendor/imgjss
 ## Roadmap
 - Avoid images extensions by looking for a file on given path (maybe not good idea)
 - Setting default js, css, img paths
-- Ability to use external assets as well
+- ~~Ability to use external assets as well~~
 - Cover with tests
 
 ## Licence
