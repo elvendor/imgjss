@@ -1,4 +1,80 @@
-imgjss
+# imgjss Laravel Package
 ======
 
-Laravel package that provides short Blade syntax to include assets
+**Imgjss** package adds handy way of including assets into your .blade.php files.
+
+## Features
+
+- Short blade syntax for `HTML::style()`, `HTML::script()` and `HTML::image()`
+
+Avoid putting extensions of js & css files, package adds it automatically:
+```php
+  @js('js/jquery.js')
+```
+same as:
+```php
+  @js('js/jquery')
+```
+
+But as for images, you **should** use file extensions:
+
+```php
+  @img('uploads/cat.jpg')
+```
+
+Pass attributes array as second parameter:
+```php
+  @js('css/print', ['media' => 'print'])
+```
+
+By default package automatically appends last modified timestamp of the file as query string.
+You can change/disable this behavior in config file or simply pass true/false as third parameter:
+```php
+@js('js/translations_ru', ['charset' => 'utf-8'], false) // disabled timestamp appending
+```
+
+When using Laravel's `HTML::image()` you pass `alt` attribute as second param, and other attributes as third.
+I think that is not good idea. Using `@img` syntax this package provides you can pass all in one array:
+```php
+@img('img/logo.png', ['alt' => 'Alternative text', 'class' => 'brand-logo'])
+```
+
+Fourth parameter is for including asset from secure location, e.g. `https://...`.
+
+And lastly, please notice that package throws Not Found Exception when asset doesn't exist.
+
+## Requirements
+
+- PHP >= 5.4.0
+- Laravel >= 4.1
+
+## Installation
+
+- The **Imgjss** package can be installed via [Composer](http://getcomposer.org) by requiring the
+`elvendor/imgjss` in your `composer.json` file:
+
+```json
+{
+    "require": {
+        "laravel/framework": "4.2.*",
+        "elvendor/imgjss": "0.*"
+    },
+    "minimum-stability": "dev"
+}
+```
+- Add Service Provider to providers list:
+```php
+    'providers' => [
+       // ...
+      'Elvendor\Imgjss\ImgjssServiceProvider',
+    ],
+```
+	
+## Roadmap
+- Avoid images extensions by looking for a file on given path (maybe not good idea)
+- Setting default js, css, img paths
+- Cover with tests
+
+## Licence
+
+imgjss is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
