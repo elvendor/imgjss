@@ -1,0 +1,20 @@
+{
+    "name": "elvendor/imgjss",
+    "description": "",
+    "authors": [
+        {
+            "name": "Elvendod",
+            "email": "bayram4ik@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Elvendor\\Imgjss\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
