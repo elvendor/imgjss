@@ -5,7 +5,7 @@ return [
 	/** 
 	 * Add timestamp by default
 	 */
-	'timestamp' => false,
+	'timestamp' => true,
 
 	'qstring' => '?t='
 ];
