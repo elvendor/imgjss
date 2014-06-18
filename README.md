@@ -4,8 +4,6 @@
 Now you can use `HTML::style()`, `HTML::script()` and `HTML::image()` via short Blade syntax.
 
 ## Features
-
-
 Avoid putting extensions of **js** & **css** files, package adds it automatically:
 ```php
 @js('js/jquery.js')
@@ -16,7 +14,6 @@ same as:
 ```
 
 But as for images, you **should** use file extensions:
-
 ```php
 @img('uploads/cat.jpg')
 ```
@@ -43,12 +40,10 @@ Fourth parameter is for including asset from secure location of your website, e.
 And lastly, please notice that package throws Not Found Exception when asset doesn't exist.
 
 ## Requirements
-
 - PHP >= 5.4
 - Laravel >= 4.2
 
 ## Installation
-
 - The **Imgjss** package can be installed via [Composer](http://getcomposer.org) by requiring the
 `elvendor/imgjss` in your `composer.json` file:
 
@@ -79,5 +74,4 @@ php artisan config:publish elvendor/imgjss
 - Cover with tests
 
 ## Licence
-
 [Imgjss](https://github.com/elvendor/imgjss) is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
