@@ -1,12 +1,12 @@
 # imgjss Laravel Package
-======
-**Imgjss** package adds handy way of including assets into your .blade.php files.
+
+[Imgjss](https://github.com/elvendor/imgjss) is a simple [Laravel 4](http://laravel.com) package that provides handy way of including assets into your `.blade.php` files.
 
 ## Features
 
 - Short blade syntax for `HTML::style()`, `HTML::script()` and `HTML::image()`
 
-Avoid putting extensions of js & css files, package adds it automatically:
+Avoid putting extensions of **js** & **css** files, package adds it automatically:
 ```php
   @js('js/jquery.js')
 ```
@@ -63,10 +63,14 @@ And lastly, please notice that package throws Not Found Exception when asset doe
 ```
 - Add Service Provider to providers list:
 ```php
-    'providers' => [
-       // ...
-      'Elvendor\Imgjss\ImgjssServiceProvider',
-    ],
+  'providers' => [
+     // ...
+    'Elvendor\Imgjss\ImgjssServiceProvider',
+  ],
+```
+- If you plan to change package defaults, you can also publish config file:
+```sh
+  php artisan config:publish elvendor/imgjss
 ```
 	
 ## Roadmap
