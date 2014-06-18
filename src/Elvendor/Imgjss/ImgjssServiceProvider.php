@@ -1,7 +1,6 @@
 <?php namespace Elvendor\Imgjss;
 
-use Illuminate\Support\ServiceProvider,
-	Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\ServiceProvider;
 
 class ImgjssServiceProvider extends ServiceProvider
 {
@@ -68,18 +67,20 @@ class ImgjssServiceProvider extends ServiceProvider
 		{
 			$path .= $ext;
 		}
-			
-		// Get the full path to the asset.
-		$absolutePath = public_path($path);
-
-		if (!file_exists($absolutePath))
+		
+		if(stristr($path, 'http') === false)
 		{
-			throw new NotFoundHttpException('Asset not found: ' . $path);
+			// Get the full path to the asset.
+			$absolutePath = public_path($path);
+
+			if (file_exists($absolutePath))
+			{
+				$timestamp = $timestamp !== null ? $timestamp : $config['timestamp'];
+				$path = $timestamp ? $path . $config['qstring'] . filemtime($absolutePath) : $path;
+			}
 		}
 
-		$timestamp = !is_null($timestamp) ? $timestamp : $config['timestamp'];
-
-		return $timestamp ? $path . $config['qstring'] . filemtime($absolutePath) : $path;
+		return $path;
 
 	}
 
