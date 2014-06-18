@@ -1,10 +1,10 @@
 # imgjss Laravel Package
 
 [Imgjss](https://github.com/elvendor/imgjss) is a simple [Laravel 4](http://laravel.com) package that provides handy way of including assets into your `.blade.php` files.
+Now you can use `HTML::style()`, `HTML::script()` and `HTML::image()` via short Blade syntax.
 
 ## Features
 
-- Short blade syntax for `HTML::style()`, `HTML::script()` and `HTML::image()`
 
 Avoid putting extensions of **js** & **css** files, package adds it automatically:
 ```php
@@ -23,7 +23,7 @@ But as for images, you **should** use file extensions:
 
 Pass attributes array as second parameter:
 ```php
-  @js('css/print', ['media' => 'print'])
+  @css('css/print', ['media' => 'print'])
 ```
 
 By default package automatically appends last modified timestamp of the file as query string.
@@ -38,14 +38,14 @@ I think that is not good idea. Using `@img` syntax this package provides you can
 @img('img/logo.png', ['alt' => 'Alternative text', 'class' => 'brand-logo'])
 ```
 
-Fourth parameter is for including asset from secure location, e.g. `https://...`.
+Fourth parameter is for including asset from secure location of your website, e.g. `https://...`. Its `false` by default.
 
 And lastly, please notice that package throws Not Found Exception when asset doesn't exist.
 
 ## Requirements
 
-- PHP >= 5.4.0
-- Laravel >= 4.1
+- PHP >= 5.4
+- Laravel >= 4.2
 
 ## Installation
 
@@ -69,7 +69,7 @@ And lastly, please notice that package throws Not Found Exception when asset doe
   ],
 ```
 - If you plan to change package defaults, you can also publish config file:
-```sh
+```php
   php artisan config:publish elvendor/imgjss
 ```
 	
@@ -80,4 +80,4 @@ And lastly, please notice that package throws Not Found Exception when asset doe
 
 ## Licence
 
-imgjss is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+[Imgjss](https://github.com/elvendor/imgjss) is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
