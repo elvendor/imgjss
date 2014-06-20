@@ -1,6 +1,9 @@
-<?php namespace Elvendor\Imgjss;
+<?php 
 
-use Illuminate\Support\ServiceProvider;
+namespace Elvendor\Imgjss;
+
+use Illuminate\Support\ServiceProvider,
+	Illuminate\Foundation\AliasLoader;
 
 class ImgjssServiceProvider extends ServiceProvider
 {
@@ -21,66 +24,34 @@ class ImgjssServiceProvider extends ServiceProvider
 	{
 		$this->package('elvendor/imgjss');
 
-		$app 	= $this->app;
-		$blade 	= $app['blade.compiler'];
-		$html  	= $app['html'];
+		/**
+		 * Make an alias for the Facade class, so we don't need to add it in main config file
+		 */
+	    $this->app->booting(function()
+	    {
+	        AliasLoader::getInstance()->alias('Imgjss', 'Elvendor\Imgjss\ImgjssFacade');
+	    });
 
-		$html->macro('css', function($path, $attrs = [], $timestamp = null, $secure = null) use($app)
-		{    	
-			return $app['html']->style($this->process($path, '.css', $timestamp), $attrs, $secure);
-		});
+		$blade = $this->app['blade.compiler'];
 
-		$html->macro('js', function($path, $attrs = [], $timestamp = null, $secure = null) use($app)
-		{    	
-			return $app['html']->script($this->process($path, '.js', $timestamp), $attrs, $secure);
-		});
-
-		$html->macro('img', function($path, $attrs = [], $timestamp = null, $secure = null) use($app)
-		{   
-			return $app['html']->image($this->process($path, null, $timestamp), @$attrs['alt'] ? $attrs['alt'] : null, $attrs, $secure);
-		});
-
-		$blade->extend(function($view) use($html)
+		/**
+		 * Here comes Blade syntax extending
+		 * We simply call for the existing Imgjss methods and echo out the results
+		 */
+		$blade->extend(function($view)
 		{
-			return preg_replace("/@css(.*)/", "<?php echo HTML::css$1;?>", $view);
+			return preg_replace("/@css(.*)/", "<?php echo Imgjss::css$1;?>", $view);
 		});
 
-		$blade->extend(function($view) use($html)
+		$blade->extend(function($view)
 		{
-			return preg_replace("/@js(.*)/", "<?php echo HTML::js$1;?>", $view);
+			return preg_replace("/@js(.*)/", "<?php echo Imgjss::js$1;?>", $view);
 		});
 
-		$blade->extend(function($view) use($html)
+		$blade->extend(function($view)
 		{
-			return preg_replace("/@img(.*)/", "<?php echo HTML::img$1 . '\r\n';?>", $view);
+			return preg_replace("/@img(.*)/", "<?php echo Imgjss::img$1;?>", $view);
 		});
-
-	}
-
-	public function process($path, $ext = null, $timestamp = null)
-	{
-	    
-		$app = $this->app;
-		$config = $app['config']->get('imgjss::config');
-
-		if($ext !== null && $ext !== strrchr($path, "."))
-		{
-			$path .= $ext;
-		}
-		
-		if(stristr($path, 'http') === false)
-		{
-			// Get the full path to the asset.
-			$absolutePath = public_path($path);
-
-			if (file_exists($absolutePath))
-			{
-				$timestamp = $timestamp !== null ? $timestamp : $config['timestamp'];
-				$path = $timestamp ? $path . $config['qstring'] . filemtime($absolutePath) : $path;
-			}
-		}
-
-		return $path;
 
 	}
 
@@ -91,7 +62,10 @@ class ImgjssServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		//
+	    $this->app['imgjss'] = $this->app->share(function($app)
+	    {
+	        return new Imgjss;
+	    });
 	}
 
 	/**
@@ -101,7 +75,7 @@ class ImgjssServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return array();
+		return array('imgjss');
 	}
 
 }
