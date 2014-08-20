@@ -42,7 +42,7 @@ Fourth parameter is for including asset from secure location of your website, e.
 And lastly, please notice that package **doesn't** throw NotFoundException when asset wasn't exist.
 
 ## Requirements
-- PHP >= 5.3
+- PHP >= 5.4
 - Laravel >= 4.0
 
 ## Installation

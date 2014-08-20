@@ -1,12 +1,9 @@
-<?php 
+<?php namespace Elvendor\Imgjss;
 
-namespace Elvendor\Imgjss;
+use Illuminate\Support\Facades\HTML;
+use	Illuminate\Support\Facades\Config;
 
-use Illuminate\Support\Facades\HTML,
-	Illuminate\Support\Facades\Config;
-
-class Imgjss
-{
+class Imgjss {
 
 	/**
 	 * Process given CSS path.
@@ -38,7 +35,7 @@ class Imgjss
 		// Here is a little trick: 
 		// by default in Laravel's HTML::image we pass 'alt' attribute as second param 
 		// and other attributes as third. A little weird, right? Let's fix that!
-		return HTML::image($this->process($path, null, $timestamp), @$attrs['alt'] ? $attrs['alt'] : null, $attrs, $secure);
+		return HTML::image($this->process($path, null, $timestamp), isset($attrs['alt']) ? $attrs['alt'] : null, $attrs, $secure);
 	}
 
 	/**
@@ -52,27 +49,24 @@ class Imgjss
 	 */
 	public function process($path, $ext = null, $timestamp = null)
 	{
-	    
-	    // Get all package configs
+		// Get all package configs
 		$config = Config::get('imgjss::config');
 
 		// We don't need appending the extension if we already have one
-		if($ext !== null && $ext !== strrchr($path, "."))
+		if ($ext !== null && $ext !== strrchr($path, "."))
 		{
 			$path .= $ext;
 		}
 
 		// Make sure file is not external
-		if(stristr($path, 'http') === false)
+		if (stristr($path, 'http') === false)
 		{
-
 			// Get the full path to the asset.
 			$absolutePath = public_path($path);
 
 			// We return the result even if the file wasn't found but without timestamp
 			if (file_exists($absolutePath))
 			{
-				
 				// Make sure that we need to generate timestamp
 				// First we check if true passed, if not we get the default behavior from the package config
 				$timestamp = $timestamp !== null ? $timestamp : $config['timestamp'];
@@ -85,7 +79,6 @@ class Imgjss
 		// Returns external paths or the local image path in case
 		// if there is need to generate the last modified timestamp
 		return $path;
-
 	}
 
 }

@@ -1,12 +1,7 @@
-<?php 
-
-namespace Elvendor\Imgjss;
+<?php namespace Elvendor\Imgjss;
 
 use Illuminate\Support\Facades\Facade;
 
-class ImgjssFacade extends Facade
-{
-
+class ImgjssFacade extends Facade {
 	protected static function getFacadeAccessor() { return 'imgjss'; }
-
 }

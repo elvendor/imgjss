@@ -1,10 +1,7 @@
 <?php
 
 return [
-
-	/** 
-	 * Add timestamp by default
-	 */
+	 // Add timestamp by default
 	'timestamp' => true,
 
 	'qstring' => '?t='
